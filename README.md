@@ -1,2 +1,2 @@
 # prismagram
-practice node react ractNative prism graphQl Apollo
+instagram clone with prisma
