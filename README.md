@@ -5,6 +5,8 @@ instagram clone with prisma
 ## User stories
 
 - [x] Create account
+- [x] Request Secret
+- [x] Confirm Secret (Login)
 - [ ] Log in
 - [ ] Like / Unlike a photo
 - [ ] Comment on a photo
