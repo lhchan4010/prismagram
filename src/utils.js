@@ -1,15 +1,15 @@
-import dotenv from "dotenv";
-import path from "path";
-dotenv.config({ path: path.resolve(__dirname, ".env") });
 import { adjectives, nouns } from "./words";
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
+import jwt from "jsonwebtoken";
 
+//랜덤 문구를 생성
 export const secretGenerator = () => {
   const randomNumber = Math.floor(Math.random() * adjectives.length);
   return `${adjectives[randomNumber]} ${nouns[randomNumber]}`;
 };
 
+//이메일 전송
 export const sendMail = (email) => {
   const option = {
     auth: {
@@ -21,6 +21,7 @@ export const sendMail = (email) => {
   return client.sendMail(email);
 };
 
+//랜덤 문구를 이메일로 전송
 export const sendSecretMail = (address, secret) => {
   const email = {
     from: "lhchan4010@gmail.com",
@@ -30,3 +31,5 @@ export const sendSecretMail = (address, secret) => {
   };
   return sendMail(email);
 };
+
+export const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET);
