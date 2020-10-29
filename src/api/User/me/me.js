@@ -10,10 +10,4 @@ export default {
       return { user: userProfile, posts };
     },
   },
-  User: {
-    fullName: (_, __, { request }) => {
-      console.log(request);
-      return "hello";
-    },
-  },
 };
