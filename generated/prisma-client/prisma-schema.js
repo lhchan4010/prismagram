@@ -38,7 +38,7 @@ type BatchPayload {
 type Comment {
   id: ID!
   text: String!
-  user: User!
+  user: User
   post: Post
 }
 
@@ -51,7 +51,7 @@ type CommentConnection {
 input CommentCreateInput {
   id: ID
   text: String!
-  user: UserCreateOneWithoutCommentsInput!
+  user: UserCreateOneWithoutCommentsInput
   post: PostCreateOneWithoutCommentsInput
 }
 
@@ -68,7 +68,7 @@ input CommentCreateManyWithoutUserInput {
 input CommentCreateWithoutPostInput {
   id: ID
   text: String!
-  user: UserCreateOneWithoutCommentsInput!
+  user: UserCreateOneWithoutCommentsInput
 }
 
 input CommentCreateWithoutUserInput {
@@ -148,7 +148,7 @@ input CommentSubscriptionWhereInput {
 
 input CommentUpdateInput {
   text: String
-  user: UserUpdateOneRequiredWithoutCommentsInput
+  user: UserUpdateOneWithoutCommentsInput
   post: PostUpdateOneWithoutCommentsInput
 }
 
@@ -191,7 +191,7 @@ input CommentUpdateManyWithWhereNestedInput {
 
 input CommentUpdateWithoutPostDataInput {
   text: String
-  user: UserUpdateOneRequiredWithoutCommentsInput
+  user: UserUpdateOneWithoutCommentsInput
 }
 
 input CommentUpdateWithoutUserDataInput {
@@ -444,7 +444,7 @@ input FileWhereUniqueInput {
 
 type Like {
   id: ID!
-  user: User!
+  user: User
   post: Post
 }
 
@@ -456,7 +456,7 @@ type LikeConnection {
 
 input LikeCreateInput {
   id: ID
-  user: UserCreateOneWithoutLikesInput!
+  user: UserCreateOneWithoutLikesInput
   post: PostCreateOneWithoutLikesInput
 }
 
@@ -472,7 +472,7 @@ input LikeCreateManyWithoutUserInput {
 
 input LikeCreateWithoutPostInput {
   id: ID
-  user: UserCreateOneWithoutLikesInput!
+  user: UserCreateOneWithoutLikesInput
 }
 
 input LikeCreateWithoutUserInput {
@@ -533,7 +533,7 @@ input LikeSubscriptionWhereInput {
 }
 
 input LikeUpdateInput {
-  user: UserUpdateOneRequiredWithoutLikesInput
+  user: UserUpdateOneWithoutLikesInput
   post: PostUpdateOneWithoutLikesInput
 }
 
@@ -560,7 +560,7 @@ input LikeUpdateManyWithoutUserInput {
 }
 
 input LikeUpdateWithoutPostDataInput {
-  user: UserUpdateOneRequiredWithoutLikesInput
+  user: UserUpdateOneWithoutLikesInput
 }
 
 input LikeUpdateWithoutUserDataInput {
@@ -874,7 +874,7 @@ type Post {
   id: ID!
   location: String
   caption: String!
-  user: User!
+  user: User
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
@@ -890,7 +890,7 @@ input PostCreateInput {
   id: ID
   location: String
   caption: String!
-  user: UserCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput
   files: FileCreateManyWithoutPostInput
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
@@ -920,7 +920,7 @@ input PostCreateWithoutCommentsInput {
   id: ID
   location: String
   caption: String!
-  user: UserCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput
   files: FileCreateManyWithoutPostInput
   likes: LikeCreateManyWithoutPostInput
 }
@@ -929,7 +929,7 @@ input PostCreateWithoutFilesInput {
   id: ID
   location: String
   caption: String!
-  user: UserCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
 }
@@ -938,7 +938,7 @@ input PostCreateWithoutLikesInput {
   id: ID
   location: String
   caption: String!
-  user: UserCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput
   files: FileCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
 }
@@ -1041,7 +1041,7 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   location: String
   caption: String
-  user: UserUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneWithoutPostsInput
   files: FileUpdateManyWithoutPostInput
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
@@ -1104,7 +1104,7 @@ input PostUpdateOneWithoutLikesInput {
 input PostUpdateWithoutCommentsDataInput {
   location: String
   caption: String
-  user: UserUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneWithoutPostsInput
   files: FileUpdateManyWithoutPostInput
   likes: LikeUpdateManyWithoutPostInput
 }
@@ -1112,7 +1112,7 @@ input PostUpdateWithoutCommentsDataInput {
 input PostUpdateWithoutFilesDataInput {
   location: String
   caption: String
-  user: UserUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneWithoutPostsInput
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
 }
@@ -1120,7 +1120,7 @@ input PostUpdateWithoutFilesDataInput {
 input PostUpdateWithoutLikesDataInput {
   location: String
   caption: String
-  user: UserUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneWithoutPostsInput
   files: FileUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
 }
@@ -1836,24 +1836,30 @@ input UserUpdateOneRequiredInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutCommentsInput {
+input UserUpdateOneWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput
   update: UserUpdateWithoutCommentsDataInput
   upsert: UserUpsertWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutLikesInput {
+input UserUpdateOneWithoutLikesInput {
   create: UserCreateWithoutLikesInput
   update: UserUpdateWithoutLikesDataInput
   upsert: UserUpsertWithoutLikesInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutPostsInput {
+input UserUpdateOneWithoutPostsInput {
   create: UserCreateWithoutPostsInput
   update: UserUpdateWithoutPostsDataInput
   upsert: UserUpsertWithoutPostsInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 

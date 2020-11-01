@@ -740,7 +740,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
 export interface CommentCreateInput {
   id?: Maybe<ID_Input>;
   text: String;
-  user: UserCreateOneWithoutCommentsInput;
+  user?: Maybe<UserCreateOneWithoutCommentsInput>;
   post?: Maybe<PostCreateOneWithoutCommentsInput>;
 }
 
@@ -817,7 +817,7 @@ export interface LikeCreateManyWithoutPostInput {
 
 export interface LikeCreateWithoutPostInput {
   id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutLikesInput;
+  user?: Maybe<UserCreateOneWithoutLikesInput>;
 }
 
 export interface UserCreateOneWithoutLikesInput {
@@ -881,7 +881,7 @@ export interface PostCreateWithoutLikesInput {
   id?: Maybe<ID_Input>;
   location?: Maybe<String>;
   caption: String;
-  user: UserCreateOneWithoutPostsInput;
+  user?: Maybe<UserCreateOneWithoutPostsInput>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
 }
@@ -928,7 +928,7 @@ export interface PostCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   location?: Maybe<String>;
   caption: String;
-  user: UserCreateOneWithoutPostsInput;
+  user?: Maybe<UserCreateOneWithoutPostsInput>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   likes?: Maybe<LikeCreateManyWithoutPostInput>;
 }
@@ -990,19 +990,21 @@ export interface CommentCreateManyWithoutPostInput {
 export interface CommentCreateWithoutPostInput {
   id?: Maybe<ID_Input>;
   text: String;
-  user: UserCreateOneWithoutCommentsInput;
+  user?: Maybe<UserCreateOneWithoutCommentsInput>;
 }
 
 export interface CommentUpdateInput {
   text?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
+  user?: Maybe<UserUpdateOneWithoutCommentsInput>;
   post?: Maybe<PostUpdateOneWithoutCommentsInput>;
 }
 
-export interface UserUpdateOneRequiredWithoutCommentsInput {
+export interface UserUpdateOneWithoutCommentsInput {
   create?: Maybe<UserCreateWithoutCommentsInput>;
   update?: Maybe<UserUpdateWithoutCommentsDataInput>;
   upsert?: Maybe<UserUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -1195,13 +1197,15 @@ export interface LikeUpdateWithWhereUniqueWithoutPostInput {
 }
 
 export interface LikeUpdateWithoutPostDataInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutLikesInput>;
+  user?: Maybe<UserUpdateOneWithoutLikesInput>;
 }
 
-export interface UserUpdateOneRequiredWithoutLikesInput {
+export interface UserUpdateOneWithoutLikesInput {
   create?: Maybe<UserCreateWithoutLikesInput>;
   update?: Maybe<UserUpdateWithoutLikesDataInput>;
   upsert?: Maybe<UserUpsertWithoutLikesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -1298,15 +1302,17 @@ export interface PostUpdateOneWithoutLikesInput {
 export interface PostUpdateWithoutLikesDataInput {
   location?: Maybe<String>;
   caption?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
+  user?: Maybe<UserUpdateOneWithoutPostsInput>;
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
 }
 
-export interface UserUpdateOneRequiredWithoutPostsInput {
+export interface UserUpdateOneWithoutPostsInput {
   create?: Maybe<UserCreateWithoutPostsInput>;
   update?: Maybe<UserUpdateWithoutPostsDataInput>;
   upsert?: Maybe<UserUpsertWithoutPostsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -1369,7 +1375,7 @@ export interface PostUpdateOneWithoutCommentsInput {
 export interface PostUpdateWithoutCommentsDataInput {
   location?: Maybe<String>;
   caption?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
+  user?: Maybe<UserUpdateOneWithoutPostsInput>;
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   likes?: Maybe<LikeUpdateManyWithoutPostInput>;
 }
@@ -1627,7 +1633,7 @@ export interface CommentUpdateWithWhereUniqueWithoutPostInput {
 
 export interface CommentUpdateWithoutPostDataInput {
   text?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
+  user?: Maybe<UserUpdateOneWithoutCommentsInput>;
 }
 
 export interface CommentUpsertWithWhereUniqueWithoutPostInput {
@@ -1896,7 +1902,7 @@ export interface PostCreateWithoutFilesInput {
   id?: Maybe<ID_Input>;
   location?: Maybe<String>;
   caption: String;
-  user: UserCreateOneWithoutPostsInput;
+  user?: Maybe<UserCreateOneWithoutPostsInput>;
   likes?: Maybe<LikeCreateManyWithoutPostInput>;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
 }
@@ -1918,7 +1924,7 @@ export interface PostUpdateOneWithoutFilesInput {
 export interface PostUpdateWithoutFilesDataInput {
   location?: Maybe<String>;
   caption?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
+  user?: Maybe<UserUpdateOneWithoutPostsInput>;
   likes?: Maybe<LikeUpdateManyWithoutPostInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
 }
@@ -1934,12 +1940,12 @@ export interface FileUpdateManyMutationInput {
 
 export interface LikeCreateInput {
   id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutLikesInput;
+  user?: Maybe<UserCreateOneWithoutLikesInput>;
   post?: Maybe<PostCreateOneWithoutLikesInput>;
 }
 
 export interface LikeUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutLikesInput>;
+  user?: Maybe<UserUpdateOneWithoutLikesInput>;
   post?: Maybe<PostUpdateOneWithoutLikesInput>;
 }
 
@@ -2057,7 +2063,7 @@ export interface PostCreateInput {
   id?: Maybe<ID_Input>;
   location?: Maybe<String>;
   caption: String;
-  user: UserCreateOneWithoutPostsInput;
+  user?: Maybe<UserCreateOneWithoutPostsInput>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   likes?: Maybe<LikeCreateManyWithoutPostInput>;
   comments?: Maybe<CommentCreateManyWithoutPostInput>;
@@ -2066,7 +2072,7 @@ export interface PostCreateInput {
 export interface PostUpdateInput {
   location?: Maybe<String>;
   caption?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
+  user?: Maybe<UserUpdateOneWithoutPostsInput>;
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   likes?: Maybe<LikeUpdateManyWithoutPostInput>;
   comments?: Maybe<CommentUpdateManyWithoutPostInput>;
