@@ -11,7 +11,7 @@ export default {
         lastName,
         bio,
       });
-      return user;
+      return true;
     },
   },
 };
